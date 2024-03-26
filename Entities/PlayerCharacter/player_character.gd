@@ -46,16 +46,13 @@ func camera_movement(delta):
 	cam.limit_right = ded_zone_pos.global_position.x - ded_zone.get_rect().position.x * camera_x_movement
 	cam.limit_left = ded_zone_pos.global_position.x + ded_zone.get_rect().position.x * camera_x_movement
 	
-	#if velocity != Vector2(0,0):
-	#	cam.set_position($Sprite2D.position)
-	#else:
-	#	cam.set_position(mouse_position)
+	if velocity != Vector2(0,0):
+		cam.set_position($Sprite2D.position)
+	else:
+		cam.set_position(mouse_position)
 		
 	cam.set_position(mouse_position)
 	cam_position = cam_position.normalized() * delta
-	
-
-	
 	
 	#add zoom
 	var zoom = cam.zoom
