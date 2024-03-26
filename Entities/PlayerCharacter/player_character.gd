@@ -4,7 +4,6 @@ extends CharacterBody2D
 @export var speed = 250
 @export var friction = 0.2
 
-@export var camera_movement_friction = 0
 @export var camera_x_movement = 1.5
 @export var camera_y_movement = 2.5
 
@@ -25,8 +24,6 @@ func _physics_process(delta):
 	
 	velocity += (frictioned_vel - velocity) * friction #TODO add sprint option
 	move_and_collide(velocity)
-	print(movement)
-	print(self.position)
 
 func _process(delta):
 	camera_movement(delta)
@@ -50,7 +47,21 @@ func camera_movement(delta):
 	cam.limit_left = ded_zone_pos.global_position.x + ded_zone.get_rect().position.x * camera_x_movement
 	
 	cam.set_position(mouse_position)
-	cam_position = cam_position.normalized() * delta * camera_movement_friction
+	cam_position = cam_position.normalized() * delta
 	
 	#add zoom
+	var zoom = cam.zoom
+	var min_zoom = $Camera2D.zoom - Vector2(-0.1,-0.1)
+	var max_zoom = $Camera2D.zoom + Vector2(-0.1,-0.1)
 	
+	#zoom = Input.is_action_just_pressed("Scroll_down") 
+	if Input.is_action_just_pressed("Scroll_down") and $Camera2D.zoom <= Vector2(0.5,0.5):
+		$Camera2D.set_zoom(min_zoom)
+		print(cam.zoom)
+	else:
+		pass
+	if Input.is_action_just_pressed("Scroll_up") and $Camera2D.zoom <= Vector2(1.5,1.5):
+		$Camera2D.set_zoom(max_zoom)
+		print(cam.zoom)
+	else:
+		pass
