@@ -46,22 +46,32 @@ func camera_movement(delta):
 	cam.limit_right = ded_zone_pos.global_position.x - ded_zone.get_rect().position.x * camera_x_movement
 	cam.limit_left = ded_zone_pos.global_position.x + ded_zone.get_rect().position.x * camera_x_movement
 	
+	#if velocity != Vector2(0,0):
+	#	cam.set_position($Sprite2D.position)
+	#else:
+	#	cam.set_position(mouse_position)
+		
 	cam.set_position(mouse_position)
 	cam_position = cam_position.normalized() * delta
 	
+
+	
+	
 	#add zoom
 	var zoom = cam.zoom
-	var min_zoom = $Camera2D.zoom - Vector2(-0.1,-0.1)
-	var max_zoom = $Camera2D.zoom + Vector2(-0.1,-0.1)
+	var zoom_speed = Vector2(-5,-5) * delta
+	var min_zoom = $Camera2D.zoom - zoom_speed
+	var max_zoom = $Camera2D.zoom + zoom_speed
 	
-	#zoom = Input.is_action_just_pressed("Scroll_down") 
-	if Input.is_action_just_pressed("Scroll_down") and $Camera2D.zoom <= Vector2(0.5,0.5):
-		$Camera2D.set_zoom(min_zoom)
-		print(cam.zoom)
-	else:
-		pass
-	if Input.is_action_just_pressed("Scroll_up") and $Camera2D.zoom <= Vector2(1.5,1.5):
+	if Input.is_action_just_pressed("Scroll_down") and $Camera2D.zoom >= Vector2(0.5,0.5):
 		$Camera2D.set_zoom(max_zoom)
 		print(cam.zoom)
-	else:
-		pass
+
+	if Input.is_action_just_pressed("Scroll_up") and $Camera2D.zoom <= Vector2(1.5,1.5):
+		$Camera2D.set_zoom(min_zoom)
+		print(cam.zoom)
+	if zoom != Vector2(1,1) :
+		p_position == cam_position * delta
+		
+	if zoom >= Vector2(1.25,1.25):
+		cam.set_position($Sprite2D.position)
