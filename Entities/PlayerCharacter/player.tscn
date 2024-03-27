@@ -9,7 +9,8 @@ size = Vector2(64, 64)
 [sub_resource type="CircleShape2D" id="CircleShape2D_tjv53"]
 radius = 380.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 3
 script = ExtResource("1_swjwt")
 camera_x_movement = 2.8
 camera_y_movement = 1.5

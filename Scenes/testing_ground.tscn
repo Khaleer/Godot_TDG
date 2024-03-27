@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7xa3okg60hp1"]
+[gd_scene load_steps=4 format=3 uid="uid://b7xa3okg60hp1"]
 
 [ext_resource type="PackedScene" uid="uid://b65vdprd8tpk8" path="res://Entities/PlayerCharacter/player.tscn" id="1_5js6u"]
 [ext_resource type="Texture2D" uid="uid://cmwkdylevrlbj" path="res://icon.svg" id="1_e05tm"]
+[ext_resource type="PackedScene" uid="uid://cmgu5tb0ixdvn" path="res://Interaction/test_object_interaction.tscn" id="3_x5idd"]
 
 [node name="TestingGround" type="Node2D"]
 
@@ -12,3 +13,6 @@ texture = ExtResource("1_e05tm")
 
 [node name="Player" parent="." instance=ExtResource("1_5js6u")]
 position = Vector2(577, 321)
+
+[node name="TestObjectInteraction" parent="." instance=ExtResource("3_x5idd")]
+position = Vector2(317, 91)

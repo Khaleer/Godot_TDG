@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmgu5tb0ixdvn"]
+
+[ext_resource type="Texture2D" uid="uid://cmwkdylevrlbj" path="res://icon.svg" id="1_nebog"]
+[ext_resource type="Script" path="res://Interaction/test_object_interaction.gd" id="2_65i7a"]
+[ext_resource type="PackedScene" uid="uid://cc7kb4has58it" path="res://Interaction/Interaction_Area/Interaction_Area.tscn" id="2_jo102"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kssvp"]
+radius = 215.407
+
+[node name="TestObjectInteraction" type="Sprite2D"]
+modulate = Color(0.262745, 0.262745, 0.262745, 1)
+texture = ExtResource("1_nebog")
+script = ExtResource("2_65i7a")
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_jo102")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_kssvp")
