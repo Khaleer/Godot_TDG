@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var camera_x_movement = 1.5
 @export var camera_y_movement = 2.5
 
+
 func _ready():
 	pass
 
@@ -36,7 +37,7 @@ func camera_movement(delta):
 	var ded_zone = $CameraLimit/CollisionShape2D.shape
 	var ded_zone_pos = $CameraLimit/CollisionShape2D
 	var p_position = self.position
-	var mouse_position = get_local_mouse_position() #get mouse pos
+	var mouse_position = get_global_mouse_position() #get mouse pos
 	var cam_position = cam.get_screen_center_position() # get screen pos
 	
 	cam.set_limit_smoothing_enabled(true)
@@ -47,13 +48,16 @@ func camera_movement(delta):
 	cam.limit_right = ded_zone_pos.global_position.x - ded_zone.get_rect().position.x * camera_x_movement
 	cam.limit_left = ded_zone_pos.global_position.x + ded_zone.get_rect().position.x * camera_x_movement
 	
-	if velocity != Vector2(0,0):
-		cam.set_position($Sprite2D.position)
+	if get_velocity() != Vector2(0,0):
+		cam.position = Vector2(0,0)
 	else:
 		cam.set_position(mouse_position)
 		
-	cam.set_position(mouse_position)
-	cam_position = cam_position.normalized() * delta
+	if Input.is_action_pressed("right_mouse"):
+		cam.set_position(mouse_position)
+		cam_position = cam_position.normalized() * delta
+	else:
+		cam.position = Vector2(0,0)
 	
 	#add zoom
 	var zoom = cam.zoom
