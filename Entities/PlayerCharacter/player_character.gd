@@ -27,6 +27,7 @@ func _physics_process(delta):
 
 func _process(delta):
 	camera_movement(delta)
+	check_stats_overwiev()
 
 func camera_movement(delta):
 	#camera movement section --------------------------------------------------------
@@ -72,3 +73,7 @@ func camera_movement(delta):
 		
 	if zoom >= Vector2(1.25,1.25):
 		cam.set_position($Sprite2D.position)
+
+func check_stats_overwiev():
+	if Input.is_action_just_pressed("check_overwiev"):
+		print(PlayerStats.multiplic())
