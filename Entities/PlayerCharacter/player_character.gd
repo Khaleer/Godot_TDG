@@ -37,7 +37,7 @@ func camera_movement(delta):
 	var ded_zone = $CameraLimit/CollisionShape2D.shape
 	var ded_zone_pos = $CameraLimit/CollisionShape2D
 	var p_position = self.position
-	var mouse_position = get_global_mouse_position() #get mouse pos
+	var mouse_position = get_local_mouse_position() #get mouse pos
 	var cam_position = cam.get_screen_center_position() # get screen pos
 	
 	cam.set_limit_smoothing_enabled(true)
