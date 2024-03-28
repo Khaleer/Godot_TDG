@@ -12,6 +12,8 @@ func _ready():
 	pass
 
 func _physics_process(delta):
+	#debug -----------------------------------------------------------------
+	InteractionManager.player = self
 	#movement section ------------------------------------------------------
 	
 	var movement = Vector2()
