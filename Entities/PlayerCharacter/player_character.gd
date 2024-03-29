@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var player_name = "n00b"
 @export var speed = 250
+@export var speed_bonus = 50
 @export var friction = 0.2
 
 @export var camera_x_movement = 1.5
@@ -23,10 +24,11 @@ func _physics_process(delta):
 	if movement.x >= 1 or movement.y >= 1 or movement.x >= -1 or movement.y >= -1:
 		movement = movement.normalized()
 	
-	var frictioned_vel = movement * speed * delta
+	var frictioned_vel = (movement * speed * delta) * speed_bonus
 	
 	velocity += (frictioned_vel - velocity) * friction #TODO add sprint option
-	move_and_collide(velocity)
+	#move_and_collide(velocity)
+	move_and_slide()
 
 func _process(delta):
 	camera_movement(delta)
