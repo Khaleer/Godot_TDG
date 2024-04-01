@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxhq17nnyt44a"]
+
+[ext_resource type="Script" path="res://Objects/Interactible/Text_popups/text_message.gd" id="1_xu53p"]
+[ext_resource type="Texture2D" uid="uid://cmwkdylevrlbj" path="res://icon.svg" id="2_5nom4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q0t1k"]
+radius = 28.0179
+
+[node name="TextMessage" type="Node2D"]
+script = ExtResource("1_xu53p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("2_5nom4")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+z_index = 20
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -63.0
+offset_right = 62.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "lorem ipsum"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_q0t1k")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var player_name = "n00b"
 @export var speed = 250
 @export var speed_bonus = 50
+@export var max_speed_bonus = 100
 @export var friction = 0.2
 
 @export var camera_x_movement = 1.5
@@ -16,13 +17,22 @@ func _physics_process(delta):
 	#debug -----------------------------------------------------------------
 	InteractionManager.player = self
 	#movement section ------------------------------------------------------
-	
+	player_movement(delta)
+
+
+func player_movement(delta):
 	var movement = Vector2()
 	movement.x = Input.get_action_strength("m_right") - Input.get_action_strength("m_left")
 	movement.y = Input.get_action_strength("m_down") - Input.get_action_strength("m_up")
 	
 	if movement.x >= 1 or movement.y >= 1 or movement.x >= -1 or movement.y >= -1:
 		movement = movement.normalized()
+	
+	if Input.is_action_pressed("m_sprint"): # THIS IS NOT MODIFABLE, ADD VARIABLES TO MAKE IT MORE MODULAR!!!
+		if speed_bonus >= 50 and speed_bonus <= (max_speed_bonus - 1):
+			speed_bonus += 10
+	else:
+		speed_bonus = 50
 	
 	var frictioned_vel = (movement * speed * delta) * speed_bonus
 	

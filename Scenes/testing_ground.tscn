@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7xa3okg60hp1"]
+[gd_scene load_steps=6 format=3 uid="uid://b7xa3okg60hp1"]
 
 [ext_resource type="PackedScene" uid="uid://b65vdprd8tpk8" path="res://Entities/PlayerCharacter/player.tscn" id="1_5js6u"]
+[ext_resource type="PackedScene" uid="uid://dxhq17nnyt44a" path="res://Objects/Interactible/Text_popups/text_message.tscn" id="3_0atf8"]
 [ext_resource type="Texture2D" uid="uid://cnjvpiyw3l3sx" path="res://Enviroment/Textures/tileset_test.png" id="4_on6uh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ki3l"]
@@ -106,3 +107,10 @@ layer_1/tile_data = PackedInt32Array(327712, 393216, 3, 327686, 327680, 3, 91751
 [node name="Player" parent="." instance=ExtResource("1_5js6u")]
 visibility_layer = 4
 position = Vector2(346, 298)
+
+[node name="TextMessage" parent="." instance=ExtResource("3_0atf8")]
+position = Vector2(537, 396)
+
+[node name="TextMessage" parent="TextMessage" instance=ExtResource("3_0atf8")]
+position = Vector2(-5, -191)
+popup_text = "jasna cholera"
